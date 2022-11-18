@@ -1,4 +1,4 @@
-Steps to perform the site-level synthesis:
+Steps to perform the site-level synthesis (Related output: Extended Data Fig.2):
 
 1. Collect and compare FLUXNET sites GPP data and the corresponding growth observations from various sources (FLUXNET comparison), as summarized in Data_synthesis_summary.xlsx.
 2. Compare spatial explicit GPP data with ITRDB, Gentree and Tropical sites output (RS comparison).
