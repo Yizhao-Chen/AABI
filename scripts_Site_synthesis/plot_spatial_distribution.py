@@ -1,7 +1,6 @@
 #########################################################################################################
 #plot the spatial distribution only used the lat output for Fig.S2c 
 #for the latitude distribution of BEPS, EC-LUE, GPPinf and ensemble output
-#Affiliated data: https://drive.google.com/drive/folders/1v3A941BJOa8QBPYG4FwIHH4fU8q3mni5?usp=share_link
 #########################################################################################################
 
 import csv

@@ -1,6 +1,5 @@
 #########################################################################################################
 #Extract the pixel values of GPP datasets
-#Affiliated data: https://drive.google.com/drive/folders/1v3A941BJOa8QBPYG4FwIHH4fU8q3mni5?usp=share_link
 #GPP data links:
 #BEPS: https://drive.google.com/file/d/1frf4QXMd--95Bn4VR1t9HRVo9KN5d8U8/view?usp=share_link
 #EC-LUE:http://glass-product.bnu.edu.cn/introduction1/gpp.html
@@ -96,7 +95,7 @@ output2 = output2.dropna(axis=1,how='any')
 output2 = output2.rename(index = {'id':'Year'})
 
 #output
-#output2.to_csv(".\\Site_synthesis\\BEPS_annual_all_Tras.csv")
+output2.to_csv(".\\Site_synthesis\\BEPS_annual_all_Tras.csv")
 
 
 

@@ -1,7 +1,6 @@
 ##########################################################################################################
 #Script to get pixel values based on gdal
 #Get site cv values from RS GPPs 
-#Affiliated data: https://drive.google.com/drive/folders/1v3A941BJOa8QBPYG4FwIHH4fU8q3mni5?usp=share_link
 ##########################################################################################################
 from osgeo import gdal,ogr
 import struct

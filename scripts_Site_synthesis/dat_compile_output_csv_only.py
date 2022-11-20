@@ -1,6 +1,5 @@
 #########################################################################################################
 #Perform site level correlation analysis between detrended GPP and tree ring width
-#Affiliated data: https://drive.google.com/drive/folders/1v3A941BJOa8QBPYG4FwIHH4fU8q3mni5?usp=share_link
 #########################################################################################################
 
 import os
@@ -27,7 +26,7 @@ path = ".\\Site_synthesis\\ITRDB_de\\europe_ITRDB_de\\"
 #BEPS as an example
 out_dir = ".\\Site_synthesis\\"
 out_csv = "stat_summary_europe_ITRDB_de_GPP_BEPS.csv"
-GPP_csv = ".\\Site_synthesis\\BEPS_82_10_0.07272_cleaned_focal_33_cv_Tras.csv"
+GPP_csv = ".\\Site_synthesis\\BEPS_annual_all_Tras.csv"
 
 input_data = pd.read_csv(GPP_csv)
 
