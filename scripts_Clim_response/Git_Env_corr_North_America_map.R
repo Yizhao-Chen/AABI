@@ -1,5 +1,5 @@
 ###########################################################################################
-#script to quantify the 24 month climate response of GPP and sink
+#script to quantify the 24 months climate response of GPP and sink
 ###########################################################################################
 
 library("dplyr")
@@ -63,7 +63,7 @@ library("foreign")
 #dbf file processing - gpp and sink detrended data
 {
 #AABI per tree as an example
-root = ".\\Clim_response\\AABI_age_bias_corrected_GLC_per_tree_detrend\\"
+root = ".\\Clim_response\\"
 dbf_input = read.dbf(paste0(root,"pred_north_america_s804_1_",1984,"_bias_correct_per_tree_glc_detrend_827.dbf"))
 names(dbf_input) = c("Point_ID",1984)
 
