@@ -23,10 +23,6 @@ The outputs were summarized as .\\RF\\FigS5a-b.pdf *ED Fig5a-b*
 
 Data for CV related analysis were summarized as .\\RF\\FigS7a-c.tif *ED Fig7a-c*
 
-Data for spatial distribution analysis were summarized as .\\RF\\FigS7d-f *ED Fig7d-f*
-
-Data for age comparison were summarized as .\\RF\\FigS8b-e *ED Fig8b-e*
-
 Data for uncertainty analysis: 
 .\\RF\\map_out_boot_full\\       complete output for bootstrap analysis
 .\\RF\\map_out_var_all_full\\     complete output for predictor analysis
