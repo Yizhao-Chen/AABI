@@ -7,14 +7,19 @@ import csv
 import pandas as pd
 import numpy as np
 
-root_temp = ".\\Clim_response\\Output_temp\\"
-root_prep = ".\\Clim_response\\Output_prep\\"
+root_temp = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\"
+root_prep = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_prep\\"
+# root_prep = ".\\Clim_response\\Output_temp\\"
+# root_prep = ".\\Clim_response\\Output_prep\\"
 
-file_name1 = "AABI_age_correct_per_tree_temp_pcorr.csv"
-file_name2 = "AABI_age_correct_per_tree_prep_pcorr.csv"
+file_name1 = "AABI_per_tree_temp_pcorr.csv"
+file_name2 = "AABI_per_tree_prep_pcorr.csv"
 
-out_name1 = "AABI_age_correct_per_tree_temp_pcorr_tras.csv"
-out_name2 = "AABI_age_correct_per_tree_prep_pcorr_tras.csv"
+out_name1 = "AABI_per_tree_temp_pcorr_tras.csv"
+out_name2 = "AABI_per_tree_prep_pcorr_tras.csv"
+
+index_list1 = list(['Variable'])
+index_list2 = list(['Variable'])
 
 infile_1 = pd.read_csv(root_temp+file_name1)
 infile_2 = pd.read_csv(root_prep+file_name2)
@@ -29,17 +34,34 @@ out2 = infile_2
 
 out1.drop(['Unnamed: 0'],inplace = True)
 out2.drop(['Unnamed: 0'],inplace = True)
+
+out1.drop([0,1,2,5,6,7,8],axis = 1, inplace=True)
+out2.drop([0,1,2,5,6,7,8],axis = 1, inplace=True)
+
 #out3.drop(['Unnamed: 0'],inplace = True)
 out1.drop_duplicates(inplace = True)
 out2.drop_duplicates(inplace = True)
 
+for i in range(1,len(out1.index)):
+    index_list1.append(int(out1.index[i].strip('X')))
 
-out1.to_csv(root_temp+out_name1)
-out2.to_csv(root_prep+out_name2)
+for i in range(1,len(out2.index)):
+    index_list2.append(int(out2.index[i].strip('X')))
 
-#part two translate the strings to number, add essential info and output processed dataset
-input_temp = pd.read_csv(root_temp + "AABI_age_correct_per_tree_temp_pcorr_tras.csv")
-input_prep = pd.read_csv(root_prep + "AABI_age_correct_per_tree_prep_pcorr_tras.csv")
+out1.index = index_list1
+out2.index = index_list2
+
+out1.to_csv(root_temp+out_name1,header=False)
+out2.to_csv(root_prep+out_name2,header=False)
+
+####################################################################################################################
+#part two: manually translate the strings to number and output processed dataset
+####################################################################################################################
+input_temp = pd.read_csv(root_temp + "AABI_per_area_temp_pcorr_tras.csv")
+input_prep = pd.read_csv(root_prep + "AABI_per_area_prep_pcorr_tras.csv")
+
+out_name11 = "AABI_per_area_temp_pcorr_tras_processed.csv"
+out_name22 =  "AABI_per_area_prep_pcorr_tras_processed.csv"
 
 #temp
 out_list = list()
@@ -157,7 +179,7 @@ input_temp['end_y'] = pd.to_numeric(input_temp['end_y'], errors='ignore')
 input_temp["y_num"] = input_temp.apply(lambda x: x['end_y'] - x['start_y'], axis=1)
 input_temp["y_num"] = input_temp["y_num"] + 1
 
-input_temp.to_csv(root_temp+ "sink_age_correct_per_tree_temp_pcorr_tras_processed.csv")
+input_temp.to_csv(root_temp+ out_name11)
 
 
 
@@ -271,4 +293,4 @@ input_prep['end_y'] = pd.to_numeric(input_prep['end_y'], errors='ignore')
 input_prep["y_num"] = input_prep.apply(lambda x: x['end_y'] - x['start_y'], axis=1)
 input_prep["y_num"] = input_prep["y_num"] + 1
 
-input_prep.to_csv(root_prep + "AABI_age_correct_per_tree_prep_pcorr_tras_processed.csv")
+input_prep.to_csv(root_prep + out_name22)

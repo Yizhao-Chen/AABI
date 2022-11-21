@@ -5,6 +5,7 @@
 library("dplyr")
 library("ggplot2")
 library(forcats)
+library(magrittr)
 
 Response_GPP_TRENDY <- read.csv(".\\Clim_response\\GPP_TRENDY_S2S3_mean_temp_prep_toshp.csv")
 
@@ -291,21 +292,10 @@ Out_GPP_FR_df$P_min <- Out_GPP_FR_df$P_mean - Out_GPP_FR_df$P_sd
 #output dfs
 #Out_GPP_df Out_GPP_df1 Out_growth_df Out_growth_df1 Out_growth_pt_df Out_growth_pt_df1
 #
-
-#boxplot
-  test = ggplot()+
-    geom_point(Out_GPP_df,mapping = aes(x = T_mean, y = P_mean,color = Source,shape = Zone)) +
-    geom_errorbar(Out_GPP_df,mapping = aes(x = T_mean,ymin = P_min, ymax = P_max,color = Source))+
-    geom_errorbarh(Out_GPP_df,mapping = aes(y = P_mean,xmin = T_min, xmax = T_max,color = Source))+
-    xlim(-1.1,1.1)+
-    ylim(-1.1,1.1)
     
 #density plot for T and P z-score
 #create the x-y axis
 #https://stackoverflow.com/questions/17753101/center-x-and-y-axis-with-ggplot2
-  library(ggplot2)
-  library(magrittr)
-  
   # constants
   axis_begin  <- -3
   axis_end    <- 3
@@ -327,7 +317,7 @@ Out_GPP_FR_df$P_min <- Out_GPP_FR_df$P_mean - Out_GPP_FR_df$P_sd
   
   tick_sz <- (tail(lab_frame$lab, 1) -  lab_frame$lab[1]) / 128
   
-  pdf(".\\Clim_response\\Fig3_sub.pdf",width = 4,height = 4)
+  pdf(".\\Clim_response\\Fig2_sub.pdf",width = 4,height = 4)
   
   p_1 <- ggplot(Response_GPP_TRENDY1,aes(x = Temp_zscore, y =Prep_zscore))+
     geom_point(color = "#81c784",size = 2)+
@@ -369,13 +359,13 @@ Out_GPP_FR_df$P_min <- Out_GPP_FR_df$P_mean - Out_GPP_FR_df$P_sd
 
 Data_all = read.csv(".\\Clim_response\\All_response_df.csv")
 
-Data_TERENDY_sink = subset(Data_all,Type == "TRENDY" | Type =="growth")  
+Data_TRENDY_sink = subset(Data_all,Type == "TRENDY" | Type =="growth")  
 
 Data_all_per_area = subset(Data_all,Type == "TRENDY" | Type =="growth" | Type == "RS" |Type == "FLUXCOM")  
 #for all per area outputs
 {
   #Temp
-  pdf(".\\Clim_response\\Fig21.pdf",width = 13.5,height = 6.5)
+  pdf(".\\Clim_response\\Fig2a.pdf",width = 13.5,height = 6.5)
   
   Corr_Temp = ggplot(Data_all_per_area) +
     geom_density(aes(x=Corr_Temp, fill = Type),alpha = 0.7) +
@@ -400,7 +390,7 @@ Data_all_per_area = subset(Data_all,Type == "TRENDY" | Type =="growth" | Type ==
   dev.off()
   
   #Prep
-  pdf(".\\Clim_response\\Fig22.pdf",width = 13.5,height = 6.5)
+  pdf(".\\Clim_response\\Fig2b.pdf",width = 13.5,height = 6.5)
   
   Corr_Prep = ggplot(Data_all_per_area) +
     geom_density(aes(x=Corr_Prep, fill = Type),alpha = 0.7) +

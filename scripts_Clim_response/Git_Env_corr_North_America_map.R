@@ -63,18 +63,23 @@ library("foreign")
 #dbf file processing - gpp and sink detrended data
 {
 #AABI per tree as an example
-root = ".\\Clim_response\\"
-dbf_input = read.dbf(paste0(root,"pred_north_america_s804_1_",1984,"_bias_correct_per_tree_glc_detrend_827.dbf"))
+root = ".\\Clim_response\\AABI_age_bias_corrected_GLC_detrend\\"
+root = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\GPP_TRENDYS2_GLC_detrend\\"
+dbf_input = read.dbf(paste0(root,"point_GPP_TrendyS2_",1984,"_age_correct_detrend_nbr.dbf"))
 names(dbf_input) = c("Point_ID",1984)
+dbf_input = dbf_input[-548,]
 
 for (i in 1985:2010){
-  dbf_input1 = read.dbf(paste0(root,"pred_north_america_s804_1_",i,"_bias_correct_per_tree_glc_detrend_827.dbf"))
+  dbf_input1 = read.dbf(paste0(root,"point_GPP_TrendyS2_",i,"_age_correct_detrend_nbr.dbf"))
   names(dbf_input1) = c("Point_ID",i)
+  dbf_input1 = dbf_input1[-548,]
   dbf_input = merge(dbf_input,dbf_input1,by="Point_ID")
 }
 
 dbf_input_t = data.frame(t(dbf_input))
 dbf_input_t = dbf_input_t[-1,]
+X = rownames(dbf_input_t)
+dbf_input_t =cbind(X,dbf_input_t)
 }
 
 #Climate response quantification
@@ -165,7 +170,7 @@ out_df = NULL
   }
 }
 
-write.csv(out_df,".\\Clim_response\\Output_temp\\AABI_age_correct_per_tree_temp_pcorr.csv")
+write.csv(out_df,"D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\GPP_TRENDYS2_temp_pcorr1.csv")
 
 
 #Prep

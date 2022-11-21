@@ -9,13 +9,13 @@ library(modeest)
 
 #data input
 {
-  data_temp_trendyS2 = read.csv(".\\Clim_response\\Output_temp\\GPP_TRENDY_S2_temp_pcorr_tras_processed_toshp.csv")
+  data_temp_trendyS2 = read.csv(".\\Clim_response\\Output_temp\\GPP_TRENDYS2_temp_pcorr_tras_processed_toshp.csv")
   
-  data_prep_trendyS2 = read.csv(".\\Clim_response\\Output_prep\\GPP_TRENDY_S2_prep_pcorr_tras_processed_toshp.csv")
+  data_prep_trendyS2 = read.csv(".\\Clim_response\\Output_prep\\GPP_TRENDYS2_prep_pcorr_tras_processed_toshp.csv")
   
-  data_temp_trendyS3 = read.csv(".\\Clim_response\\Output_temp\\GPP_TRENDY_S3_temp_pcorr_tras_processed_toshp.csv")
+  data_temp_trendyS3 = read.csv(".\\Clim_response\\Output_temp\\GPP_TRENDYS3_temp_pcorr_tras_processed_toshp.csv")
   
-  data_prep_trendyS3 = read.csv(".\\Clim_response\\Output_prep\\GPP_TRENDY_S3_prep_pcorr_tras_processed_toshp.csv")  
+  data_prep_trendyS3 = read.csv(".\\Clim_response\\Output_prep\\GPP_TRENDYS3_prep_pcorr_tras_processed_toshp.csv")  
   
   data_temp_fluxcom = read.csv(".\\Clim_response\\Output_temp\\GPP_FLUXCOM_temp_pcorr_tras_processed_toshp.csv")
   
@@ -25,13 +25,13 @@ library(modeest)
   
   data_prep_RS_mean = read.csv(".\\Clim_response\\Output_prep\\GPP_RS_mean_prep_pcorr_tras_processed_toshp.csv")  
   
-  data_temp_per_area = read.csv(".\\Clim_response\\Output_temp\\AABI_age_correct_per_area_all_mean_temp_pcorr_tras_processed_toshp.csv")
+  data_temp_per_area = read.csv(".\\Clim_response\\Output_temp\\AABI_per_area_temp_pcorr_tras_processed_toshp.csv")
 
-  data_prep_per_area = read.csv(".\\Clim_response\\Output_prep\\AABI_age_correct_per_area_all_mean_prep_pcorr_tras_processed_toshp.csv")
+  data_prep_per_area = read.csv(".\\Clim_response\\Output_prep\\AABI_per_area_prep_pcorr_tras_processed_toshp.csv")
 
-  data_temp_per_tree = read.csv(".\\Clim_response\\Output_temp\\AABI_age_correct_per_tree_temp_pcorr_tras_processed_toshp.csv")
+  data_temp_per_tree = read.csv(".\\Clim_response\\Output_temp\\AABI_per_tree_temp_pcorr_tras_processed_toshp.csv")
 
-  data_prep_per_tree = read.csv(".\\Clim_response\\Output_prep\\AABI_age_correct_per_tree_prep_pcorr_tras_processed_toshp.csv")
+  data_prep_per_tree = read.csv(".\\Clim_response\\Output_prep\\AABI_per_tree_prep_pcorr_tras_processed_toshp.csv")
 
 }
 
@@ -114,7 +114,6 @@ library(modeest)
   #get int with round
   df_prep_TRENDY_mean_T_start$mean = round(df_prep_TRENDY_mean_T_start$mean)
   
-  
   #T_end
   df_prep_TRENDY_mean_T_end <- data.frame(data_prep_trendyS2$T_end,data_prep_trendyS3$T_end)
   
@@ -134,13 +133,19 @@ library(modeest)
   for (i in 1:length(df_prep_TRENDY_mean_T_mark)){
     df_prep_TRENDY_mean_T_mark[,i][which(df_prep_TRENDY_mean_T_mark[,i] == -999)] = NA
   }
+  #get means
+  df_prep_TRENDY_mean_T_mark$mean <- rowMeans(df_prep_TRENDY_mean_T_mark,na.rm = T)
+  
+  for (i in 1:length(df_prep_TRENDY_mean_T_mark)){
+    df_prep_TRENDY_mean_T_mark[,i][which(df_prep_TRENDY_mean_T_mark[,i] == 0)] = NA
+  }
   #get mode for T_mark
-  df_prep_TRENDY_mean_T_mark$mode <- apply(df_prep_TRENDY_mean_T_mark[ ,1:length(df_prep_TRENDY_mean_T_mark)], 1, mfv)
+  # df_prep_TRENDY_mean_T_mark$mean <- apply(df_prep_TRENDY_mean_T_mark[ ,1:length(df_prep_TRENDY_mean_T_mark)], 1, mfv)
   
   data_prep_TRENDY_nbr_mean$Corr = df_prep_TRENDY_mean_Corr$mean
   data_prep_TRENDY_nbr_mean$T_start = df_prep_TRENDY_mean_T_start$mean
   data_prep_TRENDY_nbr_mean$T_end = df_prep_TRENDY_mean_T_end$mean
-  data_prep_TRENDY_nbr_mean$T_mark = df_prep_TRENDY_mean_T_mark$mode
+  data_prep_TRENDY_nbr_mean$T_mark = df_prep_TRENDY_mean_T_mark$mean
 }
 
 data_temp_TRENDY_nbr_mean = data.frame(lapply(data_temp_TRENDY_nbr_mean, as.character), stringsAsFactors=FALSE)
@@ -149,23 +154,25 @@ data_prep_TRENDY_nbr_mean = data.frame(lapply(data_prep_TRENDY_nbr_mean, as.char
 
 #remove NA & -999 lines
 {
-  data1_temp_trendyS2 = data_temp_trendyS2[-which(data_temp_trendyS2$T_mark == -999),]
-  data1_prep_trendyS2 =   data_prep_trendyS2[-which(data_prep_trendyS2$T_mark == -999),]
+  data1_temp_trendyS2 = data_temp_trendyS2[!is.na(data_temp_trendyS2$T_mark),]
+  data1_prep_trendyS2 =   data_prep_trendyS2[!is.na(data_prep_trendyS2$T_mark),]
   
-  data1_temp_trendyS3 = data_temp_trendyS3[-which(data_temp_trendyS3$T_mark == -999),]
-  data1_prep_trendyS3 =   data_prep_trendyS3[-which(data_prep_trendyS3$T_mark == -999),]
+  data1_temp_trendyS3 = data_temp_trendyS3[!is.na(data_temp_trendyS3$T_mark),]
+  data1_prep_trendyS3 =   data_prep_trendyS3[!is.na(data_prep_trendyS3$T_mark),]
   
   
   data1_temp_fluxcom = data_temp_fluxcom[!is.na(data_temp_fluxcom$T_mark),]
   data1_prep_fluxcom = data_prep_fluxcom[!is.na(data_prep_fluxcom$T_mark),]
   
-  data1_temp_trendy_mean = data_temp_TRENDY_nbr_mean[-which(data_temp_TRENDY_nbr_mean$T_mark == "NA"),]
-  data1_prep_trendy_mean = data_prep_TRENDY_nbr_mean[-which(data_prep_TRENDY_nbr_mean$T_mark == "NA"),]  
+  data1_temp_trendy_mean = data_temp_TRENDY_nbr_mean[!is.na(data_temp_TRENDY_nbr_mean$T_mark),]
+  data1_prep_trendy_mean = data_prep_TRENDY_nbr_mean[!is.na(data_temp_TRENDY_nbr_mean$T_mark),]
+  #remove the lines with different result from TRENDYS2 and S3
+  data1_prep_trendy_mean = data1_prep_trendy_mean[-(49:52),]
   
-  data1_temp_per_area = data_temp_per_area[-which(data_temp_per_area$T_end == -999),]
-  data1_prep_per_area = data_prep_per_area[-which(data_prep_per_area$T_end == -999),]
-  data1_temp_per_tree = data_temp_per_tree[-which(data_temp_per_tree$T_end == -999),]
-  data1_prep_per_tree = data_prep_per_tree[-which(data_prep_per_tree$T_end == -999),]
+  data1_temp_per_area = data_temp_per_area[!is.na(data_temp_per_area$T_mark),]
+  data1_prep_per_area = data_prep_per_area[!is.na(data_prep_per_area$T_mark),]
+  data1_temp_per_tree = data_temp_per_tree[!is.na(data_temp_per_tree$T_mark),]
+  data1_prep_per_tree = data_prep_per_tree[!is.na(data_prep_per_tree$T_mark),]
   
   data1_temp_RS_mean = data_temp_RS_mean[!is.na(data_temp_RS_mean$T_mark),]
   data1_prep_RS_mean = data_prep_RS_mean[!is.na(data_prep_RS_mean$T_mark),] 
@@ -384,7 +391,7 @@ stats = function(x){
 #all period
   #temp all
   {
-    pdf(".\\Clim_response\\Fig.2e.pdf",width = 10,height = 20)
+    pdf(".\\Clim_response\\Fig.2e1.pdf",width = 10,height = 20)
     
     ppp1 <- ggplot()+
       geom_ribbon(data = bin_stats_temp_trendy_period,aes(x=seq(28,68,2),ymin= col_min, 
@@ -420,7 +427,7 @@ stats = function(x){
   } 
   #prep all
   {
-    pdf(".\\Clim_response\\Fig.2f.pdf",width = 10,height = 20)
+    pdf(".\\Clim_response\\Fig.2f1.pdf",width = 10,height = 20)
     
     ppp2 <- ggplot()+
       geom_ribbon(data = bin_stats_prep_trendy_period,aes(x=seq(28,68,2),ymin= col_min, 
@@ -457,7 +464,7 @@ stats = function(x){
 #all pcor
   #temp all pcor
   {
-    pdf(".\\Clim_response\\Fig2c.pdf",width = 10,height = 20)
+    pdf(".\\Clim_response\\Fig2c1.pdf",width = 10,height = 20)
     
     ppp3 <- ggplot()+
       geom_ribbon(data = bin_stats_temp_trendy_corr,aes(x=seq(28,68,2),ymin= col_min, 
@@ -494,7 +501,7 @@ stats = function(x){
   }
   #prep all pcor
   {
-  pdf(".\\Clim_response\\Fig2d.pdf",width = 10,height = 20)
+  pdf(".\\Clim_response\\Fig2d1.pdf",width = 10,height = 20)
     
   ppp4 <- ggplot()+
     geom_ribbon(data = bin_stats_prep_trendy_corr,aes(x=seq(28,68,2),ymin= col_min, 
