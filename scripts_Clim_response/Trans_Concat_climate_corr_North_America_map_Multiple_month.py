@@ -7,10 +7,9 @@ import csv
 import pandas as pd
 import numpy as np
 
-root_temp = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\"
-root_prep = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_prep\\"
-# root_prep = ".\\Clim_response\\Output_temp\\"
-# root_prep = ".\\Clim_response\\Output_prep\\"
+
+root_temp = ".\\Clim_response\\Output_temp\\"
+root_prep = ".\\Clim_response\\Output_prep\\"
 
 file_name1 = "AABI_per_tree_temp_pcorr.csv"
 file_name2 = "AABI_per_tree_prep_pcorr.csv"

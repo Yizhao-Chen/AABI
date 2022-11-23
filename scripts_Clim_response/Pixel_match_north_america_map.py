@@ -6,17 +6,17 @@ import numpy as np
 
 
 #reference point csv
-shp_csv = pd.read_csv("D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\"
+shp_csv = pd.read_csv(".\\Clim_response\\data\\"
                       "reference_point.CSV")
 shp_csv.index = shp_csv['POINTID']
 
 
-root_temp = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\"
-root_prep = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_prep\\"
-#root_prep = ".\\Clim_response\\Output_temp\\"
-#root_prep = ".\\Clim_response\\Output_prep\\"
+#root_temp = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\"
+#root_prep = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_prep\\"
+root_temp = ".\\Clim_response\\Output_temp\\"
+root_prep = ".\\Clim_response\\Output_prep\\"
 
-root_out = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\"
+root_out = ".\\Clim_response\\"
 
 #temp
 #trendy S2
@@ -96,7 +96,7 @@ for i in range(len(list_temp_trendyS2)):
         shp_csv_trendyS2['T_start'].at[list_temp_trendyS2[i]] = temp_trendyS2_csv['start'].at[list_temp_trendyS2[i]]
         shp_csv_trendyS2['T_end'].at[list_temp_trendyS2[i]] = temp_trendyS2_csv['end'].at[list_temp_trendyS2[i]]
 
-shp_csv_trendyS2.to_csv(root_out + "GPP_TRENDYS2_temp_pcorr_tras_processed_toshp1.csv")
+shp_csv_trendyS2.to_csv(root_out + "GPP_TRENDYS2_temp_pcorr_tras_processed_toshp.csv")
 
 shp_csv_trendyS2['Corr'] = np.NaN
 shp_csv_trendyS2['T_start'] = np.NaN
@@ -113,7 +113,7 @@ for i in range(len(list_temp_trendyS3)):
         shp_csv_trendyS3['T_start'].at[list_temp_trendyS3[i]] = temp_trendyS3_csv['start'].at[list_temp_trendyS3[i]]
         shp_csv_trendyS3['T_end'].at[list_temp_trendyS3[i]] = temp_trendyS3_csv['end'].at[list_temp_trendyS3[i]]
 
-shp_csv_trendyS3.to_csv(root_out + "GPP_TRENDYS3_temp_pcorr_tras_processed_toshp1.csv")
+shp_csv_trendyS3.to_csv(root_out + "GPP_TRENDYS3_temp_pcorr_tras_processed_toshp.csv")
 
 shp_csv_trendyS3['Corr'] = np.NaN
 shp_csv_trendyS3['T_start'] = np.NaN
@@ -130,7 +130,7 @@ for i in range(len(list_temp_fluxcom)):
         shp_csv_fluxcom['T_start'].at[list_temp_fluxcom[i]] = temp_fluxcom_csv['start'].at[list_temp_fluxcom[i]]
         shp_csv_fluxcom['T_end'].at[list_temp_fluxcom[i]] = temp_fluxcom_csv['end'].at[list_temp_fluxcom[i]]
 
-shp_csv_fluxcom.to_csv(root_out + "GPP_FLUXCOM_temp_pcorr_tras_processed_toshp1.csv")
+shp_csv_fluxcom.to_csv(root_out + "GPP_FLUXCOM_temp_pcorr_tras_processed_toshp.csv")
 
 shp_csv_fluxcom['Corr'] = np.NaN
 shp_csv_fluxcom['T_start'] = np.NaN
@@ -147,7 +147,7 @@ for i in range(len(list_temp_sink_per_tree)):
         shp_csv_sink_per_tree['T_start'].at[list_temp_sink_per_tree[i]] = temp_sink_per_tree_csv['start'].at[list_temp_sink_per_tree[i]]
         shp_csv_sink_per_tree['T_end'].at[list_temp_sink_per_tree[i]] = temp_sink_per_tree_csv['end'].at[list_temp_sink_per_tree[i]]
 
-shp_csv_sink_per_tree.to_csv(root_out + "AABI_per_tree_temp_pcorr_tras_processed_toshp1.csv")
+shp_csv_sink_per_tree.to_csv(root_out + "AABI_per_tree_temp_pcorr_tras_processed_toshp.csv")
 
 shp_csv_sink_per_tree['Corr'] = np.NaN
 shp_csv_sink_per_tree['T_start'] = np.NaN
@@ -181,7 +181,7 @@ for i in range(len(list_temp_sink_age)):
         shp_csv_sink_age['T_start'].at[list_temp_sink_age[i]] = temp_sink_age_correct_csv['start'].at[list_temp_sink_age[i]]
         shp_csv_sink_age['T_end'].at[list_temp_sink_age[i]] = temp_sink_age_correct_csv['end'].at[list_temp_sink_age[i]]
 
-shp_csv_sink_age.to_csv(root_out + "AABI_per_area_temp_pcorr_tras_processed_toshp1.csv")
+shp_csv_sink_age.to_csv(root_out + "AABI_per_area_temp_pcorr_tras_processed_toshp.csv")
 
 shp_csv_sink_age['Corr'] = np.NaN
 shp_csv_sink_age['T_start'] = np.NaN
@@ -199,7 +199,7 @@ for i in range(len(list_prep_trendyS2)):
         shp_csv_trendyS2['T_start'].at[list_prep_trendyS2[i]] = prep_trendyS2_csv['start'].at[list_prep_trendyS2[i]]
         shp_csv_trendyS2['T_end'].at[list_prep_trendyS2[i]] = prep_trendyS2_csv['end'].at[list_prep_trendyS2[i]]
 
-shp_csv_trendyS2.to_csv(root_out + "GPP_TRENDYS2_prep_pcorr_tras_processed_toshp1.csv")
+shp_csv_trendyS2.to_csv(root_out + "GPP_TRENDYS2_prep_pcorr_tras_processed_toshp.csv")
 
 shp_csv_trendyS2['Corr'] = np.NaN
 shp_csv_trendyS2['T_start'] = np.NaN
@@ -216,7 +216,7 @@ for i in range(len(list_prep_trendyS3)):
         shp_csv_trendyS3['T_start'].at[list_prep_trendyS3[i]] = prep_trendyS3_csv['start'].at[list_prep_trendyS3[i]]
         shp_csv_trendyS3['T_end'].at[list_prep_trendyS3[i]] = prep_trendyS3_csv['end'].at[list_prep_trendyS3[i]]
 
-shp_csv_trendyS3.to_csv(root_out + "GPP_TRENDYS3_prep_pcorr_tras_processed_toshp1.csv")
+shp_csv_trendyS3.to_csv(root_out + "GPP_TRENDYS3_prep_pcorr_tras_processed_toshp.csv")
 
 shp_csv_trendyS3['Corr'] = np.NaN
 shp_csv_trendyS3['T_start'] = np.NaN
@@ -233,7 +233,7 @@ for i in range(len(list_prep_fluxcom)):
         shp_csv_fluxcom['T_start'].at[list_prep_fluxcom[i]] = prep_fluxcom_csv['start'].at[list_prep_fluxcom[i]]
         shp_csv_fluxcom['T_end'].at[list_prep_fluxcom[i]] = prep_fluxcom_csv['end'].at[list_prep_fluxcom[i]]
 
-shp_csv_fluxcom.to_csv(root_out + "GPP_FLUXCOM_prep_pcorr_tras_processed_toshp1.csv")
+shp_csv_fluxcom.to_csv(root_out + "GPP_FLUXCOM_prep_pcorr_tras_processed_toshp.csv")
 
 shp_csv_fluxcom['Corr'] = np.NaN
 shp_csv_fluxcom['T_start'] = np.NaN
@@ -250,7 +250,7 @@ for i in range(len(list_prep_sink_per_tree)):
         shp_csv_sink_per_tree['T_start'].at[list_prep_sink_per_tree[i]] = prep_sink_per_tree_csv['start'].at[list_prep_sink_per_tree[i]]
         shp_csv_sink_per_tree['T_end'].at[list_prep_sink_per_tree[i]] = prep_sink_per_tree_csv['end'].at[list_prep_sink_per_tree[i]]
 
-shp_csv_sink_per_tree.to_csv(root_out + "AABI_per_tree_prep_pcorr_tras_processed_toshp1.csv")
+shp_csv_sink_per_tree.to_csv(root_out + "AABI_per_tree_prep_pcorr_tras_processed_toshp.csv")
 
 shp_csv_sink_per_tree['Corr'] = np.NaN
 shp_csv_sink_per_tree['T_start'] = np.NaN
@@ -284,7 +284,7 @@ for i in range(len(list_prep_sink_age)):
         shp_csv_sink_age['T_start'].at[list_prep_sink_age[i]] = prep_sink_age_correct_csv['start'].at[list_prep_sink_age[i]]
         shp_csv_sink_age['T_end'].at[list_prep_sink_age[i]] = prep_sink_age_correct_csv['end'].at[list_prep_sink_age[i]]
 
-shp_csv_sink_age.to_csv(root_out + "AABI_per_area_prep_pcorr_tras_processed_toshp1.csv")
+shp_csv_sink_age.to_csv(root_out + "AABI_per_area_prep_pcorr_tras_processed_toshp.csv")
 
 shp_csv_sink_age['Corr'] = np.NaN
 shp_csv_sink_age['T_start'] = np.NaN
