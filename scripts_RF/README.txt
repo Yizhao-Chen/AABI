@@ -1,17 +1,15 @@
 Scripts to perform random forest model fitting, validation, map creation and other related analysis
 
-1. The site predictors for RF training were created using scripts in .\\RF\\data_prep_examples\\
+1. The raw site target AABI for RF training were created using TR-SNP v1.0: 
 
-2. The raw site target AABI for RF training were created using TR-SNP v1.0: 
-
-3. calculate_multi_site_mean.py: get the multi-site mean at the same pixel
+2. calculate_multi_site_mean.py: get the multi-site mean at the same pixel
 
 Inputs: .\\RF\\ITRDB_us_canada_s1982_multiple_sites.csv *This file defines the sites located at the same pixel of the 0.08333 map
 	.\\RF\\delta_bio_mean\\delta_bio_mean\\
 
 Outputs: .\\RF\\delta_bio_mean\\delta_bio_mean_ms_convert\\
 
-4. Git_RF.R: perform random forest model fitting, validation, map creation  and others
+3. Git_RF.R: perform random forest model fitting, validation, map creation  and others
 Inputs: .\\RF\\input_data_age_corrected.csv *summarized from process 1-3. 
 	.\\RF\\map_input\\
 
