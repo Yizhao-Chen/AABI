@@ -11,7 +11,7 @@ library("mgcv")
 #Comparison of absolute per tree growth and TRENDY GPP
 #Temp
   {
-Summary_data = read.csv(".\\Clim_response\\summary_GLC_AABI_GPP_Temp1.CSV")
+Summary_data = read.csv(".\\Clim_response\\summary_GLC_AABI_GPP_Temp.CSV")
 
 #data binning
 # set up cut-off values 
@@ -229,7 +229,7 @@ summary(group_tags_T)
 
 #Prep
   {
-Summary_data1 = read.csv(".\\Clim_response\\summary_GLC_AABI_GPP_Prep1.CSV")
+Summary_data1 = read.csv(".\\Clim_response\\summary_GLC_AABI_GPP_Prep.CSV")
 
     #data binning
     # set up cut-off values 
