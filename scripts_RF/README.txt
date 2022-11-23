@@ -1,6 +1,6 @@
 Scripts to perform random forest model fitting, validation, map creation and other related analysis
 
-1. The raw site target AABI for RF training were created using TR-SNP v1.0: 
+1. The raw site target AABI for RF training were created using TR-SNP v1.0: https://github.com/Yizhao-Chen/TR-SNP
 
 2. calculate_multi_site_mean.py: get the multi-site mean at the same pixel
 
