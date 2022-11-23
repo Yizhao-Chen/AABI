@@ -64,7 +64,7 @@ library("foreign")
 {
 #AABI per tree as an example
 root = ".\\Clim_response\\AABI_age_bias_corrected_GLC_detrend\\"
-root = "D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\GPP_TRENDYS2_GLC_detrend\\"
+#root = ".\\Clim_response\\GPP_TRENDYS2_GLC_detrend\\"
 dbf_input = read.dbf(paste0(root,"point_GPP_TrendyS2_",1984,"_age_correct_detrend_nbr.dbf"))
 names(dbf_input) = c("Point_ID",1984)
 dbf_input = dbf_input[-548,]
@@ -170,7 +170,7 @@ out_df = NULL
   }
 }
 
-write.csv(out_df,"D:\\MEGA\\Git\\Growth_GPP\\Clim_response\\data\\Output_temp\\GPP_TRENDYS2_temp_pcorr1.csv")
+write.csv(out_df,".\\Clim_response\\Output_temp\\GPP_TRENDYS2_temp_pcorr.csv")
 
 
 #Prep
